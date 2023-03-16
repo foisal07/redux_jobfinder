@@ -5,6 +5,7 @@ import Singlejob from "./Singlejob";
 
 export default function Jobs() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchJobs());
   }, [dispatch]);
@@ -12,10 +13,6 @@ export default function Jobs() {
   const { jobs, isLoading, isError, error } = useSelector(
     (state) => state.jobs
   );
-  // const filteredJobs = useSelector((state) => state.filteredJobs);
-  // console.log(filteredJobs);
-  const filterBy = useSelector((state) => state.filterBy);
-  console.log(filterBy);
 
   let show;
 
@@ -31,5 +28,5 @@ export default function Jobs() {
     show = jobs.map((job) => <Singlejob key={job.id} job={job} />);
   }
 
-  return <div className="jobs-list">{show}</div>;
+  return <div>{show}</div>;
 }

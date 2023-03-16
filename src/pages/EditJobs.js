@@ -5,7 +5,7 @@ import Editjobs from "../components/Editjobs";
 export default function EditJobs() {
   return (
     <Layout>
-      <EditJobs />
+      <Editjobs />
     </Layout>
   );
 }

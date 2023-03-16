@@ -1,27 +1,31 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { HashRouter } from "react-router-dom";
-import Layout from "./components/Layout";
-import Joblistheading from "./components/Joblistheading";
-import Editjobs from "./components/Editjobs";
-import Addnewjob from "./components/Addnewjob";
-import Jobs from "./components/Jobs";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import AddJobs from "./pages/AddJobs";
 import Home from "./pages/Home";
+import EditJobs from "./pages/EditJobs";
+import InternshipJobs from "./pages/InternshipJobs";
+import FulltimeJobs from "./pages/FulltimeJobs";
+import RemoteJobs from "./pages/RemoteJobs";
 
 function App() {
   return (
     <>
-      {/* <Router>
+      <Router>
         <Routes>
           <Route path="/" exact element={<Home />} />
+          <Route path="/addjobs" exact element={<AddJobs />} />
+          <Route path="/editjobs" exact element={<EditJobs />} />
+          <Route path="/jobs/internship" exact element={<InternshipJobs />} />
+          <Route path="/jobs/fulltime" exact element={<FulltimeJobs />} />
+          <Route path="/jobs/remote" exact element={<RemoteJobs />} />
         </Routes>
-      </Router> */}
-      <Layout>
+      </Router>
+      {/* <Layout>
         <Joblistheading />
         <Jobs />
         {/* <Addnewjob /> */}
-        {/* <Editjobs /> */}
-      </Layout>
+      {/* <Editjobs />
+      {/* </Layout> */}
     </>
   );
 }
