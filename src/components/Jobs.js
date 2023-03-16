@@ -14,6 +14,10 @@ export default function Jobs() {
     (state) => state.jobs
   );
 
+  const sortedJobs = useSelector((state) => state.sortFilter.filteredJobs);
+  const searchedJob = useSelector((state) => state.sortFilter.searchedJob);
+  console.log(searchedJob);
+
   let show;
 
   if (isLoading) show = <div className="col-span-12">Loading...</div>;
@@ -26,6 +30,14 @@ export default function Jobs() {
 
   if (!isError && !isLoading && jobs?.length > 0) {
     show = jobs.map((job) => <Singlejob key={job.id} job={job} />);
+  }
+
+  if (sortedJobs?.length > 0) {
+    show = sortedJobs.map((job) => <Singlejob key={job.id} job={job} />);
+  }
+
+  if (searchedJob?.length > 0) {
+    show = searchedJob.map((job) => <Singlejob key={job.id} job={job} />);
   }
 
   return <div>{show}</div>;

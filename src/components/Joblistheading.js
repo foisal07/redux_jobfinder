@@ -1,7 +1,21 @@
 import React from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { sortBy, search } from "../features/sort_filter_search/sortFilterSlice";
 
-export default function Joblistheading({title}) {
-  console.log(title);
+export default function Joblistheading({ title, jobs }) {
+  const dispatch = useDispatch();
+
+  const handleSort = (event) => {
+    dispatch(sortBy({ jobs, sortBy: event.target.value }));
+  };
+
+  const handleSearch = (event) => {
+    console.log(event.target.value);
+    const searchTerm = event.target.value;
+    dispatch(search({ jobs, searchTerm: searchTerm }));
+  };
+
   return (
     <>
       <div className="md:flex space-y-2 md:space-y-0 justify-between mb-10 ">
@@ -14,6 +28,7 @@ export default function Joblistheading({title}) {
               placeholder="Search Job"
               className="search-input"
               id="lws-searchJob"
+              onChange={handleSearch}
             />
           </div>
           <select
@@ -21,10 +36,11 @@ export default function Joblistheading({title}) {
             name="sort"
             autocomplete="sort"
             className="flex-1"
+            onChange={handleSort}
           >
-            <option>Default</option>
-            <option>Salary (Low to High)</option>
-            <option>Salary (High to Low)</option>
+            <option value="Default">Default</option>
+            <option value="LowToHigh">Salary (Low to High)</option>
+            <option value="HighToLow">Salary (High to Low)</option>
           </select>
         </div>
       </div>
