@@ -1,9 +1,17 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { deleteJob } from "../features/jobs/jobsSlice";
 
 export default function Singlejob({ job }) {
-  const { title, type, salary, deadline } = job;
+  const dispatch = useDispatch();
+  const { id, title, type, salary, deadline } = job;
   const colorType = type.replace(/\s+/g, "").toLowerCase();
+
+  const handleDelete = () => {
+    dispatch(deleteJob(id));
+    window.location.reload(true);
+  };
 
   return (
     <div className="jobs-list">
@@ -51,7 +59,11 @@ export default function Singlejob({ job }) {
           </span>
 
           <span className="sm:ml-3">
-            <button type="button" className="lws-delete btn btn-danger ">
+            <button
+              type="button"
+              className="lws-delete btn btn-danger"
+              onClick={handleDelete}
+            >
               <i className="fa-solid fa-trash text-gray-300 -ml-1 mr-2"></i>
               Delete
             </button>

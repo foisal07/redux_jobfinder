@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
 export default function Editjobs() {
+  const dispatch = useDispatch();
+  const [editJob, setEditJob] = useState();
+
+  const updateData = (e) => {
+    setEditJob({
+      ...editJob,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleEditJob = (e) => {
+    e.preventDefault();
+    // console.log(newJob);
+    // dispatch(updateJob(editJob));
+  };
   return (
     <>
       <h1 className="mb-10 text-center lws-section-title">Edit Job</h1>

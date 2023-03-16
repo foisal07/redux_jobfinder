@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { sortBy, search } from "../features/sort_filter_search/sortFilterSlice";
 

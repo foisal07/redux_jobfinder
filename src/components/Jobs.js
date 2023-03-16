@@ -16,7 +16,7 @@ export default function Jobs() {
 
   const sortedJobs = useSelector((state) => state.sortFilter.filteredJobs);
   const searchedJob = useSelector((state) => state.sortFilter.searchedJob);
-  console.log(searchedJob);
+  console.log(jobs);
 
   let show;
 

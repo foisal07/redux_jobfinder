@@ -1,12 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import { addNewJob } from "../features/jobs/jobsSlice";
 
 export default function Addnewjob() {
+  const dispatch = useDispatch();
+  const [newJob, setNewJob] = useState();
+  const navigateTo = useNavigate()
+
+  const updateData = (e) => {
+    setNewJob({
+      ...newJob,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleAddJob = (e) => {
+    e.preventDefault();
+    dispatch(addNewJob(newJob));
+    navigateTo('/')
+  };
+
   return (
     <>
       <h1 className="mb-10 text-center lws-section-title">Add New Job</h1>
-
       <div className="max-w-3xl mx-auto">
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleAddJob}>
           <div className="fieldContainer">
             <label
               for="lws-JobTitle"
@@ -14,7 +34,12 @@ export default function Addnewjob() {
             >
               Job Title
             </label>
-            <select id="lws-JobTitle" name="lwsJobTitle" required>
+            <select
+              id="lws-JobTitle"
+              name="title"
+              onChange={updateData}
+              required
+            >
               <option value="" hidden selected>
                 Select Job
               </option>
@@ -37,7 +62,7 @@ export default function Addnewjob() {
 
           <div className="fieldContainer">
             <label for="lws-JobType">Job Type</label>
-            <select id="lws-JobType" name="lwsJobType" required>
+            <select id="lws-JobType" name="type" onChange={updateData} required>
               <option value="" hidden selected>
                 Select Job Type
               </option>
@@ -53,11 +78,12 @@ export default function Addnewjob() {
               <span className="input-tag">BDT</span>
               <input
                 type="number"
-                name="lwsJobSalary"
+                name="salary"
                 id="lws-JobSalary"
                 required
                 className="!rounded-l-none !border-0"
                 placeholder="20,00,000"
+                onChange={updateData}
               />
             </div>
           </div>
@@ -66,8 +92,9 @@ export default function Addnewjob() {
             <label for="lws-JobDeadline">Deadline</label>
             <input
               type="date"
-              name="lwsJobDeadline"
+              name="deadline"
               id="lws-JobDeadline"
+              onChange={updateData}
               required
             />
           </div>
