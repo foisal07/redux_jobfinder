@@ -1,33 +1,42 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { editJob } from "../features/jobs/jobsSlice";
 
 export default function Editjobs() {
+  const { jobsID } = useParams();
+  const navigateTo = useNavigate();
   const dispatch = useDispatch();
-  const [editJob, setEditJob] = useState();
+  const [editedJob, setEditedJob] = useState();
 
   const updateData = (e) => {
-    setEditJob({
-      ...editJob,
+    setEditedJob({
+      ...editedJob,
       [e.target.name]: e.target.value,
     });
   };
 
   const handleEditJob = (e) => {
     e.preventDefault();
-    // console.log(newJob);
-    // dispatch(updateJob(editJob));
+    dispatch(editJob({ id: jobsID, data: editedJob }));
+    navigateTo("/");
   };
   return (
     <>
       <h1 className="mb-10 text-center lws-section-title">Edit Job</h1>
 
       <div className="max-w-3xl mx-auto">
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleEditJob}>
           <div className="fieldContainer">
             <label className="text-sm font-medium text-slate-300">
               Job Title
             </label>
-            <select id="lws-JobTitle" name="lwsJobTitle" required>
+            <select
+              id="lws-JobTitle"
+              name="title"
+              onChange={updateData}
+              required
+            >
               <option value="" hidden selected>
                 Select Job
               </option>
@@ -50,7 +59,7 @@ export default function Editjobs() {
 
           <div className="fieldContainer">
             <label>Job Type</label>
-            <select id="lws-JobType" name="lwsJobType" required>
+            <select id="lws-JobType" name="type" onChange={updateData} required>
               <option value="" hidden selected>
                 Select Job Type
               </option>
@@ -66,8 +75,9 @@ export default function Editjobs() {
               <span className="input-tag">BDT</span>
               <input
                 type="number"
-                name="lwsJobSalary"
+                name="salary"
                 id="lws-JobSalary"
+                onChange={updateData}
                 required
                 className="!rounded-l-none !border-0"
                 placeholder="20,00,000"
@@ -79,8 +89,9 @@ export default function Editjobs() {
             <label>Deadline</label>
             <input
               type="date"
-              name="lwsJobDeadline"
+              name="deadline"
               id="lws-JobDeadline"
+              onChange={updateData}
               required
             />
           </div>

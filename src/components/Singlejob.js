@@ -13,6 +13,8 @@ export default function Singlejob({ job }) {
     window.location.reload(true);
   };
 
+  const handleEdit = () => {};
+
   return (
     <div className="jobs-list">
       <div className="lws-single-job">
@@ -50,8 +52,12 @@ export default function Singlejob({ job }) {
         </div>
         <div className="mt-5 flex lg:mt-0 lg:ml-4">
           <span className="hidden sm:block">
-            <Link to="/editjobs">
-              <button type="button" className="lws-edit btn btn-primary">
+            <Link to={`/editjobs/${id}`}>
+              <button
+                type="button"
+                className="lws-edit btn btn-primary"
+                onClick={handleEdit}
+              >
                 <i className="fa-solid fa-pen text-gray-300 -ml-1 mr-2"></i>
                 Edit
               </button>

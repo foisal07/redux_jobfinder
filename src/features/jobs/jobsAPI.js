@@ -11,8 +11,8 @@ export const addJob = async (data) => {
   return response.data;
 };
 
-export const editJob = async (id, data) => {
-  const response = await axios.put(`/jobs/${id}`, data);
+export const updateJob = async (jobsID, data) => {
+  const response = await axios.put(`/jobs/${jobsID}`, data);
 
   return response.data;
 };

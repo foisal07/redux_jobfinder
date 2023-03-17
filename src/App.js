@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Home />} />
           <Route path="/addjobs" exact element={<AddJobs />} />
-          <Route path="/editjobs" exact element={<EditJobs />} />
+          <Route path="/editjobs/:jobsID" exact element={<EditJobs />} />
           <Route path="/jobs/internship" exact element={<InternshipJobs />} />
           <Route path="/jobs/fulltime" exact element={<FulltimeJobs />} />
           <Route path="/jobs/remote" exact element={<RemoteJobs />} />
